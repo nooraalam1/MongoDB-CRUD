@@ -25,4 +25,13 @@ Server Site:
           const result = await haiku.insertOne(user);
           res.send(result)
     })
+------------------------------------------------------------------------
+GET Method:
 
+     const database = client.db("insertDB");
+    const haiku = database.collection("haiku");
+    app.post('/users',async(req,res)=>{
+              const user = req.body
+          const result = await haiku.insertOne(user);
+          res.send(result)
+    })
