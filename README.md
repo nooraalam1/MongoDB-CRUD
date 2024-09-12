@@ -35,3 +35,26 @@ GET Method:
           const result = await haiku.insertOne(user);
           res.send(result)
     })
+
+--------------------------------------------------------------------
+DELETE Method:
+Server:
+
+     app.delete('/Allusers/:id',async(req,res)=>{
+      const a= req.params.id;
+      const query = { _id: new ObjectId (a) };
+    const result = await haiku.deleteOne(query);
+    res.send(result)
+    })
+
+Client:
+
+     const handleDelete = (_id) => {
+        console.log("Clicked", _id)
+        fetch(`http://localhost:3000/Allusers/${_id}`,
+            { method: 'DELETE' }
+        )
+            .then(res => res.json())
+            .then(data => console.log(_id))
+    }
+-------------------------------------------------------------------------
