@@ -15,8 +15,8 @@ Client Site:
 
 Server Site:
 
-async function run() {
-  try {
+    async function run() {
+      try {
       await client.connect();
     const database = client.db("insertDB");
     const haiku = database.collection("haiku");
