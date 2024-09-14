@@ -30,11 +30,11 @@ GET Method:
 
      const database = client.db("insertDB");
     const haiku = database.collection("haiku");
-    app.post('/users',async(req,res)=>{
-              const user = req.body
-          const result = await haiku.insertOne(user);
-          res.send(result)
-    })
+    app.get('/users',async(req,res)=>{
+        const cursor = haiku.find();
+        const result = await cursor.toArray();
+        res.send(result)
+      })
 
 --------------------------------------------------------------------
 DELETE Method:
