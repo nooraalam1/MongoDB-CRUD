@@ -70,6 +70,21 @@ Server:
 
     })
 
+     app.put('/users/:id',async(req,res)=>{
+      const id = req.params.id;
+      const a = req.body
+      const filter = {_id: new ObjectId(id)}
+      const options = { upsert: true }
+      const updateDoc = {
+        $set: {
+          name : a.name,
+          password : a.password
+        },
+      };
+      const result = await haiku.updateOne(filter, updateDoc, options);
+      res.send(result)
+    })
+
 Client:
 
     <Link to={`/update/${a._id}`}><button>Update</button></Link>
@@ -79,6 +94,18 @@ Client:
     element: <Update></Update>,
     loader: ({ params }) => fetch(`http://localhost:3000/users/${params.id}`)
     }
+
+     fetch(`http://localhost:3000/users/${b._id}`,
+            {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Info)
+            }
+        )
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
 
     
 
