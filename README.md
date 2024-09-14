@@ -58,3 +58,28 @@ Client:
             .then(data => console.log(_id))
     }
 -------------------------------------------------------------------------
+
+Update:
+Server:
+
+      app.get('/users/:id',async(req,res)=>{
+      const id = req.params.id;
+      const query = { _id: new ObjectId (id) };
+      const result = await haiku.findOne(query)
+      res.send(result)
+
+    })
+
+Client:
+
+    <Link to={`/update/${a._id}`}><button>Update</button></Link>
+
+    {
+    path: '/update/:id',
+    element: <Update></Update>,
+    loader: ({ params }) => fetch(`http://localhost:3000/users/${params.id}`)
+    }
+
+    
+
+  
